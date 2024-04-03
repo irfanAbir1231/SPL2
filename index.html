@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <script>
+        // Fetch meal times from the backend
+        fetch('http://localhost:3000/meal_times')
+            .then(response => response.json())
+            .then(notifications => {
+                // Loop through the notifications and schedule them
+                notifications.forEach(notification => {
+                    // Calculate the delay until the notification
+                    var now = new Date();
+                    var delay = notification.notificationTime - now;
+    
+                    // If the notification time has already passed, skip this notification
+                    if (delay < 0) {
+                        return;
+                    }
+    
+                    // Schedule the notification
+                    setTimeout(function () {
+                        // Check if the browser supports notifications
+                        if ('Notification' in window) {
+                            // Request permission to show notifications
+                            Notification.requestPermission().then(function (permission) {
+                                if (permission === 'granted') {
+                                    // Create a new notification
+                                    var notification = new Notification('Meal Reminder', {
+                                        body: `It's almost time for ${notification.meal}!`,
+                                        icon: 'path/to/notification-icon.png'
+                                    });
+    
+                                    // Redirect to meal.html when the notification is clicked
+                                    notification.onclick = function () {
+                                        window.location.href = 'meal.html';
+                                    };
+                                }
+                            });
+                        }
+                    }, delay);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    <button onclick="sendNotification()">Send Notification</button>
+</body>
+</html>
