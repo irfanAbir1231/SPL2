@@ -1,78 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meal Preferences</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        label {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        input[type="checkbox"] {
-            margin-bottom: 20px;
-        }
-        
-        button[type="submit"] {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                margin: 20px;
-                padding: 10px;
-            }
-        }
-    </style>
+    <!-- Your existing meta tags and title -->
 </head>
 <body>
-    <!-- <div class="container">
-        <h2>Manage Your Meal Preferences</h2>
-        <form id="mealPreferencesForm">
-            <label for="skipBreakfast">Skip Breakfast?</label>
-            <input type="checkbox" id="skipBreakfast" name="skipBreakfast">
-            <button type="submit">Save Preferences</button>
-        </form>
-    </div> -->
-    
     <div class="container">
         <h2>Manage Your Meal Preferences</h2>
         <form id="mealPreferencesForm">
@@ -85,6 +16,8 @@
             <label for="skipDinner">Skip Dinner?</label>
             <input type="checkbox" id="skipDinner" name="skipDinner">
 
+            <button type="button" id="subscribeNotifications">Subscribe to Notifications</button>
+
             <button type="submit">Save Preferences</button>
         </form>
     </div>
@@ -96,26 +29,16 @@
             const skipBreakfast = document.getElementById('skipBreakfast').checked;
             const skipLunch = document.getElementById('skipLunch').checked;
             const skipDinner = document.getElementById('skipDinner').checked;
+            const subscribeButton = document.getElementById('subscribeNotifications');
     
-            // Send a POST request to the backend to update meal preferences
-            fetch('/update-meal-preferences', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ skipBreakfast, skipLunch, skipDinner })
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Meal preferences updated successfully');
-                } else {
-                    alert('Failed to update meal preferences');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while updating meal preferences');
-            });
+            // Check if the button is subscribed or unsubscribed and update its text accordingly
+            if (subscribeButton.textContent === 'Subscribe to Notifications') {
+                subscribeButton.textContent = 'Unsubscribe from Notifications';
+                subscribeButton.classList.add('subscribed');
+            } else {
+                subscribeButton.textContent = 'Subscribe to Notifications';
+                subscribeButton.classList.remove('subscribed');
+            }
         });
     </script>
 </body>
