@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Box</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            position: relative; /* Add position relative to position the logout button */
+        }
+
+        /* Top bar styles */
+        .top-bar {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-bar .profile .profile-info {
+            margin-right: 10px;
+        }
+
+        .top-bar .profile .logout {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Logout button styles */
+        .logout {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        /* Container styles */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Form styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Input styles */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top bar -->
+    <div class="top-bar">
+        <div class="profile">
+            <div class="profile-info">
+                <span>ID: 12345</span>
+                <span>Coins: 100</span>
+            </div>
+        </div>
+        <div class="logout" onclick="logout()">Logout</div>
+    </div>
+
+    <!-- Complaint Submission Section -->
+    <div class="container">
+        <h2>Write Your Complaint</h2>
+        <form id="complaintForm">
+            <label for="complaint">Complaint:</label>
+            <textarea id="complaint" name="complaint" rows="4" cols="50" placeholder="Enter your complaint"></textarea>
+        </form>
+    </div>
+
+    <!-- Category Selection Section -->
+    <div class="container">
+        <h2>Select Categories</h2>
+        <div id="categoriesContainer"></div>
+        <button type="button" onclick="submitCategories()">Submit</button>
+    </div>
+
+    <script>
+        // Function to navigate to the next page
+        function nextPage() {
+            const complaint = document.getElementById('complaint').value.trim();
+            if (!complaint){
+                alert('Please enter your complaint.');
+                return;
+            } 
+            localStorage.setItem('complaint', complaint);
+            window.location.href = 'categories.html';
+        }
+
+        // Function to logout
+        function logout() {
+            // Redirect to the index page
+            window.location.href = 'index.html';
+        }
+    </script>
+    <script src="category.js"></script>
+</body>
+</html>

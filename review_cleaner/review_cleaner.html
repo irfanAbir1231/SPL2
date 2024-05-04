@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Cleaner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Container styles */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Form styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="date"],
+        input[type="checkbox"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Star rating styles */
+        .rating {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .fa-star {
+            font-size: 24px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .fa-star.checked {
+            color: #ffd700; /* Gold color */
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Review Cleaner</h2>
+        <form id="reviewForm">
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date">
+            
+            <div>
+                <input type="checkbox" id="absent" name="absent">
+                <label for="absent">Absent</label>
+            </div>
+
+            <label for="rating">Rating:</label>
+            <div class="rating">
+                <span class="fa fa-star" data-rating="1"></span>
+                <span class="fa fa-star" data-rating="2"></span>
+                <span class="fa fa-star" data-rating="3"></span>
+                <span class="fa fa-star" data-rating="4"></span>
+                <span class="fa fa-star" data-rating="5"></span>
+            </div>
+
+            <label for="review">Review:</label>
+            <textarea id="review" name="review" rows="4" cols="50" placeholder="Enter your review"></textarea>
+
+            <button type="button" onclick="submitReview()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function submitReview() {
+            // Simulating review submission
+            alert("Reviewed");
+            // Redirect to home_page.html
+            // window.location.href = "Home/home_page.html";
+
+        }
+
+        function handleClick(event) {
+            const stars = event.target.parentElement.querySelectorAll('.fa-star');
+            const index = Array.from(stars).indexOf(event.target);
+
+            stars.forEach((star, i) => {
+                if (i <= index) {
+                    star.classList.add('checked');
+                } else {
+                    star.classList.remove('checked');
+                }
+            });
+        }
+
+        const stars = document.querySelectorAll('.fa-star');
+        stars.forEach(star => {
+            star.addEventListener('click', handleClick);
+        });
+    </script>
+</body>
+</html>
