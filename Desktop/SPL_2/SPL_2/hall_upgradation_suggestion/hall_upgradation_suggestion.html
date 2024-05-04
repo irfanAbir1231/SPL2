@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall Upgradation Suggestions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Container styles */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #007bff;
+        }
+
+        /* Form styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 150px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Suggestions section styles */
+        .suggestion {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .suggestion span {
+            flex: 1;
+        }
+
+        .upvote-btn {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .upvote-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hall Upgradation Suggestions</h2>
+
+        <!-- Form to submit a suggestion -->
+        <form id="suggestionForm">
+            <label for="suggestion">Your Suggestion:</label>
+            <textarea id="suggestion" name="suggestion" rows="4" placeholder="Enter your suggestion"></textarea>
+            <button type="button" onclick="submitSuggestion()">Submit</button>
+        </form>
+
+        <!-- Suggestions section -->
+        <div id="suggestions">
+            <!-- Suggestions will be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        // Function to submit a suggestion
+        function submitSuggestion() {
+            const suggestion = document.getElementById('suggestion').value.trim();
+            if (!suggestion) {
+                alert('Please enter your suggestion.');
+                return;
+            }
+
+            // Here you can handle the submission of the suggestion
+            // You can send the suggestion to the server or store it locally
+
+            // For demonstration purposes, let's just log the suggestion
+            console.log('Suggestion:', suggestion);
+
+            // After submission, clear the textarea
+            document.getElementById('suggestion').value = '';
+
+            // You may also want to fetch and display the latest suggestions
+            // This can be done by calling a function to fetch suggestions from the server
+            // and updating the suggestions section
+        }
+
+        // Function to fetch and display suggestions
+        function fetchSuggestions() {
+            // Here you can fetch suggestions from the server or get them from local storage
+
+            // For demonstration purposes, let's create some dummy suggestions
+            const suggestions = [
+                { id: 1, text: 'Improve Wi-Fi connectivity in common areas' },
+                { id: 2, text: 'Upgrade gym equipment' },
+                { id: 3, text: 'Organize more social events for residents' }
+            ];
+
+            // Clear previous suggestions
+            const suggestionsContainer = document.getElementById('suggestions');
+            suggestionsContainer.innerHTML = '';
+
+            // Display each suggestion
+            suggestions.forEach(suggestion => {
+                const suggestionElement = document.createElement('div');
+                suggestionElement.classList.add('suggestion');
+                suggestionElement.innerHTML = `
+                    <span>${suggestion.text}</span>
+                    <button class="upvote-btn" onclick="upvote(${suggestion.id})">Upvote</button>
+                `;
+                suggestionsContainer.appendChild(suggestionElement);
+            });
+        }
+
+        // Function to upvote a suggestion
+        function upvote(suggestionId) {
+            // Here you can handle the upvote logic
+            // For demonstration purposes, let's just log the upvoted suggestion ID
+            console.log('Upvoted suggestion ID:', suggestionId);
+        }
+
+        // Fetch and display suggestions when the page loads
+        window.onload = fetchSuggestions;
+    </script>
+</body>
+</html>

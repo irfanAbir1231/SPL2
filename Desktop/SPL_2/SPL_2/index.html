@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall Admission System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 18px; /* Increase the font size */
+            line-height: 1.6; /* Increase the space between lines */
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 300px; /* Set a fixed width */
+            margin: auto; /* Center the container */
+        }
+
+        .container button:first-of-type {
+            background-color: #2a15ca;
+            color: #fff; /* Make the text color white */
+            border: none; /* Remove the border */
+            padding: 10px 20px; /* Add some padding */
+            margin-bottom: 10px; /* Add some margin to the bottom */
+            cursor: pointer; /* Change the cursor when hovering over the button */
+        }
+
+        .container button:first-of-type:hover {
+            background-color: #1a0d7c; /* Change the color when hovering over the button */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>HallHaven</h1>
+        <button onclick="window.location.href='studentAdmission.html'">Admit to Hall</button>
+        <br>
+        <a href="studentLogin.html">Login as a Student</a>
+        <br>
+        <a href="authority.html">Login/Register as an Authority</a>
+    </div>
+</body>
+
+</html>
