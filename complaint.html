@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Box</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    
+    <!-- Complaint Submission Section -->
+    <div class="container">
+        <h2>Submit Your Complaint</h2>
+        <div id="selectedCategoriesContainer"></div>
+        <form id="complaintForm">
+            <label for="category">Select Categories:</label>
+            <select id="category" name="category" multiple>
+                <option value="electricity">Electricity</option>
+                <option value="cleanliness">Cleanliness</option>
+                <option value="maintenance">Maintenance</option>
+                <!-- Add more categories as needed -->
+            </select>
+            <br><br>
+            <label for="complaint">Complaint:</label>
+            <textarea id="complaint" name="complaint" rows="4" cols="50"></textarea>
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="requestCategoryContainer">
+            <label for="newCategory">Request New Category:</label>
+            <input type="text" id="newCategory" name="newCategory">
+            <button id="requestCategoryBtn" type="button">Request</button>
+        </div>
+    </div>
+
+    <!-- Category Selection Section -->
+    <div class="container">
+        <h2>Select Categories</h2>
+        <input type="text" id="searchCategories" oninput="searchCategories()" placeholder="Search categories...">
+        <div id="categoriesContainer"></div>
+        <button type="button" onclick="submitCategories()">Submit</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="category.js"></script>
+</body>
+</html>

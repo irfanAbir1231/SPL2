@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Review</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .review-section {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .rating {
+            margin-bottom: 10px;
+        }
+
+        .rating .fa-star {
+            color: #e1dfd7;
+            cursor: pointer;
+        }
+
+        .rating .fa-star.checked {
+            color: #FFA500;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        input[type="button"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Food Review</h1>
+
+        <form id="food-reviews">
+            <div class="review-section">
+                <h2>Breakfast</h2>
+                <label for="breakfast-rating">Rating:</label>
+                <div class="rating">
+                    <span class="fa fa-star" data-rating="1"></span>
+                    <span class="fa fa-star" data-rating="2"></span>
+                    <span class="fa fa-star" data-rating="3"></span>
+                    <span class="fa fa-star" data-rating="4"></span>
+                    <span class="fa fa-star" data-rating="5"></span>
+                </div>
+                <textarea id="breakfast-review" name="breakfast-review" placeholder="Enter your review"></textarea>
+            </div>
+
+            <div class="review-section">
+                <h2>Lunch</h2>
+                <label for="lunch-rating">Rating:</label>
+                <div class="rating">
+                    <span class="fa fa-star" data-rating="1"></span>
+                    <span class="fa fa-star" data-rating="2"></span>
+                    <span class="fa fa-star" data-rating="3"></span>
+                    <span class="fa fa-star" data-rating="4"></span>
+                    <span class="fa fa-star" data-rating="5"></span>
+                </div>
+                <textarea id="lunch-review" name="lunch-review" placeholder="Enter your review"></textarea>
+            </div>
+
+            <div class="review-section">
+                <h2>Dinner</h2>
+                <label for="dinner-rating">Rating:</label>
+                <div class="rating">
+                    <span class="fa fa-star" data-rating="1"></span>
+                    <span class="fa fa-star" data-rating="2"></span>
+                    <span class="fa fa-star" data-rating="3"></span>
+                    <span class="fa fa-star" data-rating="4"></span>
+                    <span class="fa fa-star" data-rating="5"></span>
+                </div>
+                <textarea id="dinner-review" name="dinner-review" placeholder="Enter your review"></textarea>
+            </div>
+
+            <input type="button" value="Submit" onclick="submitReviews()">
+        </form>
+    </div>
+
+    <script>
+        function submitReviews() {
+            // Get all review sections
+            const reviewSections = document.querySelectorAll('.review-section');
+
+            // Iterate through each review section
+            reviewSections.forEach(section => {
+                // Get rating and review text
+                const rating = section.querySelector('.rating .fa-star.checked').getAttribute('data-rating');
+                const review = section.querySelector('textarea').value.trim();
+
+                // You can submit the rating and review here
+                console.log("Rating:", rating);
+                console.log("Review:", review);
+            });
+        }
+
+        function handleClick(event) {
+            // Get the parent element
+            const parent = event.target.parentElement;
+
+            // Get all the stars in the parent element
+            const stars = parent.querySelectorAll('.fa-star');
+
+            // Get the index of the clicked star
+            const index = Array.from(stars).indexOf(event.target);
+
+            // Update the stars
+            stars.forEach((star, i) => {
+                if (i <= index) {
+                    // This star and all the stars before it should be checked
+                    star.classList.add('checked');
+                } else {
+                    // This star and all the stars after it should be unchecked
+                    star.classList.remove('checked');
+                }
+            });
+        }
+
+        // Get all the stars
+        const stars = document.querySelectorAll('.fa-star');
+
+        // Add the event listener to each star
+        stars.forEach(star => {
+            star.addEventListener('click', handleClick);
+        });
+    </script>
+    
+</body>
+</html>
